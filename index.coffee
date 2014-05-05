@@ -34,7 +34,7 @@ App.SelectorListComponent = Ember.Component.extend
 
   currentModel: (->
     @.get('models')[@.get('currentIndex')]
-  ).property('currentIndex', 'models')
+  ).property('currentIndex')
 
   indexDidChange: (->
     @.sendAction('indexUpdate', @.get('currentIndex'))

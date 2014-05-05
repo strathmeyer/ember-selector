@@ -50,7 +50,7 @@
     currentIndex: 0,
     currentModel: (function() {
       return this.get('models')[this.get('currentIndex')];
-    }).property('currentIndex', 'models'),
+    }).property('currentIndex'),
     indexDidChange: (function() {
       this.sendAction('indexUpdate', this.get('currentIndex'));
       return this.sendAction('modelUpdate', this.get('currentModel'));
