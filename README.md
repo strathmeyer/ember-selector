@@ -13,7 +13,7 @@ Point your browser to `http://localhost:8000/`
 
 ```
 sudo npm install -g coffee-script
-coffee -wc *.coffee
+coffee -wc -o js/ coffeescript/
 ```
 
 You can now edit the `.coffee` files and `.js` files will be generated.

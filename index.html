@@ -3,56 +3,61 @@
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/handlebars/handlebars.js"></script>
 <script src="bower_components/ember/ember.js"></script>
-<script src="index.js"></script>
+<script type="text/javascript">
+  window.App = Ember.Application.create({LOG_TRANSITIONS: true});
+</script>
+<script src="js/selector.js"></script>
+<script src="js/my_app.js"></script>
 
 <body>
+  <!-- Selector component templates: -->
 
-<script type="text/x-handlebars">
-  <div id="content">
-    {{outlet}}
-  </div>
-</script>
+  <script type="text/x-handlebars" data-template-name="components/selector-list">
+    {{#each model in models}}
+      {{selector-list-item index=_view.contentIndex list=this model=model modelView=modelView}}
+    {{/each}}
+  </script>
 
-<script type="text/x-handlebars" data-template-name="index">
-  <h3>Current selection:</h3>
-
-  {{#with currentAddress as model}}
-    {{view App.AddressView}}
-
-    {{input value=model.line1}}
-  {{/with}}
-
-  <h3>Select one:</h3>
-
-  {{selector-list
-    models=addresses
-    modelView=App.AddressSelectView
-    modelUpdate='updateAddress'}}
-</script>
-
-<script type="text/x-handlebars" data-template-name="address-select">
-  <div class="checkbox"></div>
-  {{view "address"}}
-</script>
-
-<script type="text/x-handlebars" data-template-name="address">
-  <div class="address">
-    {{model.line1}}<br>
-    {{model.line2}}
-  </div>
-</script>
+  <script type="text/x-handlebars" data-template-name="components/selector-list-item">
+    {{view modelView}}
+  </script>
 
 
-<!-- Selector components: -->
+  <!-- My App templates -->
 
-<script type="text/x-handlebars" data-template-name="components/selector-list">
-  {{#each model in models}}
-    {{selector-list-item index=_view.contentIndex list=this model=model modelView=modelView}}
-  {{/each}}
-</script>
+  <script type="text/x-handlebars">
+    <div id="content">
+      {{outlet}}
+    </div>
+  </script>
 
-<script type="text/x-handlebars" data-template-name="components/selector-list-item">
-  {{view modelView}}
-</script>
+  <script type="text/x-handlebars" data-template-name="index">
+    <h3>Current selection:</h3>
+
+    {{#with currentAddress as model}}
+      {{view App.AddressView}}
+
+      {{input value=model.line1}}
+    {{/with}}
+
+    <h3>Select one:</h3>
+
+    {{selector-list
+      models=addresses
+      modelView=App.AddressSelectView
+      modelUpdate='updateAddress'}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="address-select">
+    <div class="checkbox"></div>
+    {{view "address"}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="address">
+    <div class="address">
+      {{model.line1}}<br>
+      {{model.line2}}
+    </div>
+  </script>
 
 </body>
